@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
        
        
 
-        string s = "Velocity: " + Mathf.Round(rb.velocity.magnitude);
+        string s = "Velocity: " + (Mathf.Round(rb.velocity.magnitude*3.2f));
         info.text = s;
 
     }
