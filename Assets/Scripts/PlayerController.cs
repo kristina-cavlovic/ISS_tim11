@@ -31,8 +31,16 @@ using UnityEngine.UI;
     }
 }*/
 
+
 public class PlayerController : MonoBehaviour
 {
+    public enum myLocation
+    {
+        raskrizje,
+        sredinaPlanine,
+        planinaKraj,
+        gradUlica
+    }
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
     [SerializeField] WheelCollider backRight;
@@ -50,10 +58,20 @@ public class PlayerController : MonoBehaviour
     public float turnAngleStep = 2f;
     public Text info;
 
+    [SerializeField]
+    public myLocation selectedLocation;
+
     private float currEngine = 0f;
     private float currBreak = 0f;
     private float currTurn = 0f;
 
+    private void Start()
+    {
+        if (selectedLocation == myLocation.raskrizje) transform.SetPositionAndRotation(new Vector3((float)-14.89, 0, (float)-8.60000038), Quaternion.Euler(0f, 90f, 0f));
+        else if (selectedLocation == myLocation.gradUlica) transform.SetPositionAndRotation(new Vector3(1f, 0, -121.199997f), Quaternion.Euler(0f, 0f, 0f));
+        else if (selectedLocation == myLocation.sredinaPlanine) transform.SetPositionAndRotation(new Vector3(596, 11.6000004f, -137.100006f), Quaternion.Euler(0f, 80f, 0f));
+        else if (selectedLocation == myLocation.planinaKraj) transform.SetPositionAndRotation(new Vector3(1016, 1.60000002f, 432), Quaternion.Euler(0f, 80f, 0f));
+    }
     private void FixedUpdate()
     {
 
