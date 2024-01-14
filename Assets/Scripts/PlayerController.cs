@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] WheelCollider backRight;
     [SerializeField] WheelCollider backLeft;
 
+    [SerializeField] PhysicMaterial terrainMaterial;
+
     [SerializeField] Transform frontRightTransform;
     [SerializeField] Transform frontLeftTransform;
     [SerializeField] Transform backRightTransform;
@@ -69,11 +71,16 @@ public class PlayerController : MonoBehaviour
     {
         if (selectedLocation == myLocation.raskrizje) transform.SetPositionAndRotation(new Vector3((float)-14.89, 0, (float)-8.60000038), Quaternion.Euler(0f, 90f, 0f));
         else if (selectedLocation == myLocation.gradUlica) transform.SetPositionAndRotation(new Vector3(1f, 0, -121.199997f), Quaternion.Euler(0f, 0f, 0f));
-        else if (selectedLocation == myLocation.sredinaPlanine) transform.SetPositionAndRotation(new Vector3(596, 11.6000004f, -137.100006f), Quaternion.Euler(0f, 80f, 0f));
+        else if (selectedLocation == myLocation.sredinaPlanine) transform.SetPositionAndRotation(new Vector3(791.528442f, 7.04993773f, -338.137115f), Quaternion.Euler(356.311798f, 123.236107f, 1.41131294f));
         else if (selectedLocation == myLocation.planinaKraj) transform.SetPositionAndRotation(new Vector3(1016, 1.60000002f, 432), Quaternion.Euler(0f, 80f, 0f));
     }
     private void FixedUpdate()
     {
+        WheelHit wh;
+
+        frontRight.GetGroundHit(out wh);
+       //Debug.Log((wh.collider.sharedMaterial == terrainMaterial));
+
 
         Rigidbody rb = GetComponent<Rigidbody>();
         if (Input.GetKey(KeyCode.C))
@@ -85,6 +92,7 @@ public class PlayerController : MonoBehaviour
             {
                 currEngine = engineForce;
                 currBreak = 0;
+                if (wh.collider.sharedMaterial == terrainMaterial) currEngine = currEngine / 2;
             }
             
         } else if (Input.GetKey(KeyCode.X))
@@ -95,7 +103,10 @@ public class PlayerController : MonoBehaviour
         {
             currEngine = 0;
             currBreak = 100;
+            if (wh.collider.sharedMaterial == terrainMaterial) currBreak = currBreak * 2 ;
         }
+
+        
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -105,6 +116,7 @@ public class PlayerController : MonoBehaviour
             } else
             {
                 currEngine = -currEngine;
+                if (wh.collider.sharedMaterial == terrainMaterial) currEngine = currEngine / 2;
             }
         }
 
