@@ -96,15 +96,11 @@ public class PlayerController : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if (Input.GetKey(KeyCode.C))
         {
-            if((transform.InverseTransformDirection(rb.velocity).z < 0) && rb.velocity.magnitude > 1 && !Input.GetKey(KeyCode.Space)) {
-                currBreak = 1000;
-                currEngine = 0;
-            } else
-            {
+            
                 currEngine = engineForce;
                 currBreak = 0;
                 if (wh.collider.sharedMaterial == terrainMaterial) currEngine = currEngine / 2;
-            }
+            
             
         } else if (Input.GetKey(KeyCode.X))
         {
@@ -124,10 +120,17 @@ public class PlayerController : MonoBehaviour
             if((transform.InverseTransformDirection(rb.velocity).z > 0) && rb.velocity.magnitude > 1)
             {
                 currBreak = 1000;
+                currEngine = 0;
             } else
             {
                 currEngine = -currEngine;
                 if (wh.collider.sharedMaterial == terrainMaterial) currEngine = currEngine / 2;
+            }
+        } else
+        {
+            if((transform.InverseTransformDirection(rb.velocity).z < 0) && rb.velocity.magnitude > 1) {
+                currBreak = 1000;
+                currEngine = 0;
             }
         }
 
