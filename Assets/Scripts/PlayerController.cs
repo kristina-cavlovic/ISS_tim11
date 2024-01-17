@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,13 +35,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum myLocation
+    /*public enum myLocation
     {
         raskrizje,
         sredinaPlanine,
         planinaKraj,
         gradUlica
-    }
+    }*/
     [SerializeField] WheelCollider frontRight;
     [SerializeField] WheelCollider frontLeft;
     [SerializeField] WheelCollider backRight;
@@ -60,8 +61,8 @@ public class PlayerController : MonoBehaviour
     public float turnAngleStep = 2f;
     public Text info;
 
-    [SerializeField]
-    public myLocation selectedLocation;
+    /*[SerializeField]
+    public myLocation selectedLocation;*/
 
     private float currEngine = 0f;
     private float currBreak = 0f;
@@ -69,10 +70,20 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (selectedLocation == myLocation.raskrizje) transform.SetPositionAndRotation(new Vector3((float)-14.89, 0, (float)-8.60000038), Quaternion.Euler(0f, 90f, 0f));
+        string path = Application.streamingAssetsPath;
+        path = path + "/config.txt";
+        string selectedLocation = File.ReadAllLines(path)[0];
+
+        /*if (selectedLocation == myLocation.raskrizje) transform.SetPositionAndRotation(new Vector3((float)-14.89, 0, (float)-8.60000038), Quaternion.Euler(0f, 90f, 0f));
         else if (selectedLocation == myLocation.gradUlica) transform.SetPositionAndRotation(new Vector3(1f, 0, -121.199997f), Quaternion.Euler(0f, 0f, 0f));
         else if (selectedLocation == myLocation.sredinaPlanine) transform.SetPositionAndRotation(new Vector3(791.528442f, 7.04993773f, -338.137115f), Quaternion.Euler(356.311798f, 123.236107f, 1.41131294f));
         else if (selectedLocation == myLocation.planinaKraj) transform.SetPositionAndRotation(new Vector3(1016, 1.60000002f, 432), Quaternion.Euler(0f, 80f, 0f));
+        */
+        if (selectedLocation.Equals("Raskrizje")) transform.SetPositionAndRotation(new Vector3((float)-14.89, 0, (float)-8.60000038), Quaternion.Euler(0f, 90f, 0f));
+        else if (selectedLocation.Equals("Grad Ulica")) transform.SetPositionAndRotation(new Vector3(1f, 0, -121.199997f), Quaternion.Euler(0f, 0f, 0f));
+        else if (selectedLocation.Equals("Sredina Planine")) transform.SetPositionAndRotation(new Vector3(791.528442f, 7.04993773f, -338.137115f), Quaternion.Euler(356.311798f, 123.236107f, 1.41131294f));
+        else if (selectedLocation.Equals("Planina Kraj")) transform.SetPositionAndRotation(new Vector3(1016, 1.60000002f, 432), Quaternion.Euler(0f, 80f, 0f));
+
     }
     private void FixedUpdate()
     {
