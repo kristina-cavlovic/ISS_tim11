@@ -1,6 +1,8 @@
-Planina Kraj
-Sredina Planine
-Raskrizje
 Grad Ulica
+Sredina Planine
+Planina Kraj
+
+Raskrizje
+
 
 #put as the first line the starting position you want

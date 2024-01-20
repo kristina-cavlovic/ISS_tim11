@@ -18,6 +18,8 @@ public class AntiRollBarFront : MonoBehaviour
         if (groundedL)
             travelL = (-WheelL.transform.InverseTransformPoint(hit.point).y - WheelL.radius) / WheelL.suspensionDistance;
 
+         
+
         var groundedR = WheelR.GetGroundHit(out hit);
         if (groundedR)
             travelR = (-WheelR.transform.InverseTransformPoint(hit.point).y - WheelR.radius) / WheelR.suspensionDistance;
