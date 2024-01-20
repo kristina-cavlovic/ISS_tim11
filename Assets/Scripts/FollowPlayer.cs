@@ -13,8 +13,8 @@ public class FollowPlayer : MonoBehaviour
     {
         transform.localRotation = Quaternion.identity;
         rotation = transform.localRotation;
-        max = Quaternion.Euler(0f, -12.5f, 0f) * transform.localRotation;
-        min = Quaternion.Euler(0f, 16.5f, 0f) * transform.localRotation;
+        max = Quaternion.Euler(0f, -13.5f, 0f) * transform.localRotation;
+        min = Quaternion.Euler(0f, 18f, 0f) * transform.localRotation;
     }
 
     // Update is called once per frame
