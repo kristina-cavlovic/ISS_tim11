@@ -3,10 +3,15 @@ SIMULATOR VOŽNJE
 Potreban Unity editor version: 2021.3.30f1
 
 Kratke upute za otvaranje projekta u Unityju:
+
 -stvoriti novi folder u File exploreru
+
 -otvori terminal i pozicionirati se u novostvorenom folderu
+
 -upisati: git clone https://github.com/kristina-cavlovic/ISS_tim11.git
+
 -upisati: cd ISS_tim11
+
 -upisati: git checkout master
 
 U Unityju Hubu:
